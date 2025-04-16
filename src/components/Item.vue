@@ -20,5 +20,8 @@ const props = defineProps(
     </RouterLink>
 </template>
 
-<style>
+<style scoped>
+.item {
+    @apply min-h-[400px] ;
+}
 </style>
