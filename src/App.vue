@@ -1,13 +1,32 @@
 <script setup>
+import Loading from './components/loading.vue'
+
 import { useRouter, RouterLink } from 'vue-router'
-import { provide, ref } from 'vue'
+import { provide, ref, onMounted } from 'vue'
 const router = useRouter();
 
-const data = ref([
-  { id: 1, title: "excuse 1", description: "description 1", image: "https://picsum.photos/320/480" },
-  { id: 2, title: "excuse 2", description: "description 2", image: "https://picsum.photos/320/480" },
-  { id: 3, title: "excuse 3", description: "description 3", image: "https://picsum.photos/320/480" },
-])
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { app } from './firebase';
+
+const db = getFirestore(app);
+const colRef = collection(db, "excuses");
+
+const loading = ref(true)
+const data = ref([])
+const loadData = async () => {
+  const docs = await getDocs(colRef);
+  data.value = docs.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+}
+
+onMounted(() => {
+  loadData();
+  setTimeout(() => {
+    loading.value = false;
+  }, 500);
+})
 
 provide('data', data)
 
@@ -15,9 +34,10 @@ provide('data', data)
 
 </script>
 
-<template>
+<template> 
   <main class="flex flex-col items-center justify-center h-screen max-w-screen-sm mx-auto">
-    <RouterView/>
+    <Loading v-if="loading" />    
+    <RouterView v-else/>
   </main>
 </template>
 

@@ -32,6 +32,6 @@ const data = inject('data')
 
 <style scoped>
 .list {
-    @apply mx-auto max-w-screen-md;
+    @apply mx-auto;
 }
 </style>
