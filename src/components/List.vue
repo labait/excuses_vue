@@ -22,12 +22,19 @@ const data = inject('data')
 
         
     </swiper-container>
-    <!-- go back to home -->
-    <RouterLink to="/">
-        <button class="btn">
-            Go back
-        </button>
-    </RouterLink>
+    <!-- navigation buttons -->
+    <div class="flex space-x-4 justify-center">
+        <RouterLink to="/">
+            <button class="btn">
+                Go back
+            </button>
+        </RouterLink>
+        <RouterLink to="/add">
+            <button class="btn bg-blue-500 text-white hover:bg-blue-600">
+                Add New Excuse
+            </button>
+        </RouterLink>
+    </div>
 </template>
 
 <style scoped>

@@ -1,31 +1,40 @@
 <script setup>
 import Loading from './components/loading.vue'
 
-import { useRouter, RouterLink } from 'vue-router'
-import { provide, ref, onMounted } from 'vue'
-const router = useRouter();
+import { useRouter, RouterLink, useRoute } from 'vue-router'
+import { provide, ref, onMounted, watch } from 'vue'
+const router = useRouter()
+const route = useRoute()
 
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { app } from './firebase';
+import { getFirestore, collection, getDocs } from "firebase/firestore"
+import { app } from './firebase'
 
-const db = getFirestore(app);
-const colRef = collection(db, "excuses");
+const db = getFirestore(app)
+const colRef = collection(db, "excuses")
 
 const loading = ref(true)
 const data = ref([])
 const loadData = async () => {
-  const docs = await getDocs(colRef);
+  loading.value = true
+  const docs = await getDocs(colRef)
   data.value = docs.docs.map((doc) => ({
     id: doc.id,
     ...doc.data()
-  }));
+  }))
+  setTimeout(() => {
+    loading.value = false
+  }, 500)
 }
 
+// Reload data when navigating to list or when app mounts
+watch(() => route.path, (newPath) => {
+  if (newPath === '/list') {
+    loadData()
+  }
+})
+
 onMounted(() => {
-  loadData();
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
+  loadData()
 })
 
 provide('data', data)
