@@ -1,3 +1,10 @@
 @import "tailwindcss";
 
 /* Keep any custom styles below this line */
+
+
+@layer components {
+    .btn {
+        @apply cursor-pointer text-center w-full hover:bg-blue-600 bg-blue-500 text-white p-2 rounded-md;
+    }
+}
