@@ -5,6 +5,7 @@ import Detail from './components/Detail.vue'
 import Form from './components/Form.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
+import BookmarkedList from './components/BookmarkedList.vue'
 import { auth } from './firebase'
 
 const router = createRouter({
@@ -31,6 +32,13 @@ const router = createRouter({
     {
       path: '/list',
       component: List,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/bookmarks',
+      component: BookmarkedList,
       meta: {
         requiresAuth: true
       }

@@ -10,9 +10,13 @@ const route = useRoute()
 import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from './firebase'
 import { provideAuth } from './auth'
+import { provideBookmarks } from './bookmarks'
 
 // Provide auth context
 provideAuth()
+
+// Provide bookmarks context
+provideBookmarks()
 
 // Create a query to sort by createdAt in descending order
 const excusesQuery = query(
@@ -66,7 +70,33 @@ provide('data', data)
     <!-- Header with auth menu -->
     <header class="bg-white shadow-sm py-4 px-6">
       <div class="max-w-screen-sm mx-auto flex justify-between items-center">
-        <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+        <div class="flex items-center space-x-6">
+          <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+          
+          <!-- Navigation Links (only shown when logged in) -->
+          <nav v-if="!loading" class="hidden sm:flex space-x-4">
+            <RouterLink 
+              to="/list" 
+              class="text-gray-600 hover:text-indigo-600 transition-colors"
+              active-class="text-indigo-600 font-medium"
+            >
+              All Excuses
+            </RouterLink>
+            <RouterLink 
+              to="/bookmarks" 
+              class="text-gray-600 hover:text-indigo-600 transition-colors"
+              active-class="text-indigo-600 font-medium"
+            >
+              <span class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                </svg>
+                Bookmarks
+              </span>
+            </RouterLink>
+          </nav>
+        </div>
+        
         <ProfileMenu />
       </div>
     </header>
