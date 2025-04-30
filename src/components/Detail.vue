@@ -28,7 +28,10 @@ const formattedDate = computed(() => {
         <div class="flex flex-col items-center justify-center mb-4">
             <h1 class="text-2xl font-bold mb-2">{{ item?.title }}</h1>
             <p class="text-center">{{ item?.description }}</p>
-            <p v-if="formattedDate" class="text-sm text-gray-500 mt-2">Created on {{ formattedDate }}</p>
+            <div class="text-sm text-gray-500 mt-2 text-center">
+              <p v-if="item?.userEmail">Created by {{ item.userEmail }}</p>
+              <p v-if="formattedDate">{{ formattedDate }}</p>
+            </div>
         </div>
         <img v-if="item?.image" :src="item.image" alt="Excuse image" class="w-full max-w-md max-h-96 object-contain mb-8 rounded-lg">
         <div v-else class="w-full max-w-md h-40 bg-gray-200 flex items-center justify-center mb-8 rounded-lg">

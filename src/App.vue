@@ -1,5 +1,6 @@
 <script setup>
 import Loading from './components/loading.vue'
+import ProfileMenu from './components/ProfileMenu.vue'
 
 import { useRouter, RouterLink, useRoute } from 'vue-router'
 import { provide, ref, onMounted, watch } from 'vue'
@@ -8,6 +9,10 @@ const route = useRoute()
 
 import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from './firebase'
+import { provideAuth } from './auth'
+
+// Provide auth context
+provideAuth()
 
 // Create a query to sort by createdAt in descending order
 const excusesQuery = query(
@@ -54,21 +59,28 @@ onMounted(() => {
 })
 
 provide('data', data)
-
-
-
 </script>
 
 <template> 
-  <main class="flex flex-col items-center justify-center h-screen max-w-screen-sm mx-auto">
-    <Loading v-if="loading" />    
-    <RouterView v-else/>
-  </main>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header with auth menu -->
+    <header class="bg-white shadow-sm py-4 px-6">
+      <div class="max-w-screen-sm mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+        <ProfileMenu />
+      </div>
+    </header>
+    
+    <!-- Main content -->
+    <main class="flex-1 flex flex-col items-center justify-center max-w-screen-sm mx-auto p-6">
+      <Loading v-if="loading" />    
+      <RouterView v-else/>
+    </main>
+  </div>
 </template>
-
 
 <style>
 main {
-
+  min-height: 80vh;
 }
 </style>

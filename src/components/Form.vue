@@ -4,8 +4,10 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage"
 import { db, storage } from '../firebase'
 import { useRouter } from 'vue-router'
+import { useAuth } from '../auth'
 
 const router = useRouter()
+const { user } = useAuth()
 const excusesCollection = collection(db, "excuses")
 
 const title = ref('')
@@ -88,12 +90,14 @@ const submitForm = async () => {
       imageUrl = await getDownloadURL(fileRef)
     }
     
-    // Add document to Firestore with timestamp
+    // Add document to Firestore with timestamp and user ID
     await addDoc(excusesCollection, {
       title: title.value,
       description: description.value,
       image: imageUrl,
-      createdAt: serverTimestamp() // Add timestamp for sorting
+      createdAt: serverTimestamp(), // Add timestamp for sorting
+      userId: user.value?.uid || 'anonymous', // Add user ID
+      userEmail: user.value?.email || 'anonymous'
     })
     
     // Reset form

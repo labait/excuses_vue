@@ -32,7 +32,10 @@ const formattedDate = computed(() => {
             </div>
             <div class="title text-2xl font-bold text-center">{{ item.title }}</div>
             <div class="description text-center">{{ item.description }}</div>
-            <div v-if="formattedDate" class="date text-sm text-gray-500 mt-2">{{ formattedDate }}</div>
+            <div class="flex flex-col items-center mt-2 text-sm text-gray-500">
+                <div v-if="item.userEmail" class="user">By: {{ item.userEmail }}</div>
+                <div v-if="formattedDate" class="date">{{ formattedDate }}</div>
+            </div>
         </div>
     </RouterLink>
 </template>
