@@ -42,7 +42,7 @@ onMounted(() => {
     </a>
     <div class="flex space-x-4 justify-center">
         <button class="btn-primary" @click="refresh">
-            Get Random Excuse
+            Scusa Random
         </button> 
     </div>
 </template>

@@ -27,7 +27,7 @@ const navigateToApp = () => {
       @click="navigateToApp" 
       class="btn-primary btn-circle"
     >
-      {{ user ? 'Premi qui per sfogliare le scuse' : 'Login' }}
+      {{ 'Premi qui per sfogliare le scuse' }}
     </button>
   </div>
 </template>

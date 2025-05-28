@@ -15,13 +15,14 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore'
 import { provideAuth } from './auth'
 import { provideBookmarks } from './bookmarks'
 
-const config = {
+const config = ref({
+  loading: false,
   appName: 'Opsy',
   features: {
     add: true,
     bookmarks: false,
   }
-}
+})
 provide('config', config)
 
 // Provide auth context
@@ -36,10 +37,9 @@ const excusesQuery = query(
   orderBy("createdAt", "desc")
 )
 
-const loading = ref(true)
 const data = ref([])
 const loadData = async () => {
-  loading.value = true
+  config.value.loading = true
   try {
     const querySnapshot = await getDocs(excusesQuery)
     
@@ -65,7 +65,7 @@ const loadData = async () => {
     console.error("Error loading excuses:", error)
   } finally {
     setTimeout(() => {
-      loading.value = false
+      config.value.loading = false
     }, 500)
   }
 }
@@ -95,11 +95,11 @@ provide('data', data)
       <div class="max-w-screen-sm mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-6">
           <RouterLink to="/">
-            <div class="text-xl font-bold ">{{ config.appName }}</div>
+            <div class="text-6xl font-bold ">{{ config.appName }}</div>
           </RouterLink>
           
           <!-- Navigation Links (only shown when logged in) -->
-          <nav v-if="!loading" class="hidden sm:flex space-x-4">
+          <nav v-if="!config.loading" class="hidden sm:flex space-x-4">
             <RouterLink 
               v-if="config.features.bookmarks"
               to="/bookmarks" 
@@ -117,10 +117,13 @@ provide('data', data)
         </div>
         
         <div>
-              <!-- User Avatar with Name -->
+    
+    <!-- User Avatar with Name -->
     <div class="relative">
       <button 
-        @click="user ? toggleMenu : navigateToLogin"
+        @click="() => {
+          router.push('/profile')
+        }"
         class="flex items-center space-x-2 focus:outline-none"
       >
         <span v-if="user" class="text-sm hidden sm:inline">
@@ -151,7 +154,7 @@ provide('data', data)
     
     <!-- Main content -->
     <main class="flex-1 flex flex-col items-center justify-center max-w-screen-sm mx-auto p-6">
-      <Loading v-if="loading" />    
+      <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
   </div>

@@ -46,8 +46,8 @@ const handleGoogleLogin = async () => {
 </script>
 
 <template>
-  <div class="min-w-sm mx-auto p-6 bg-white rounded-lg shadow-md ">
-    <h1 class="text-2xl font-bold mb-6 text-center">Login / Register</h1>
+  <div class="">
+    <h1 class="text-2xl font-bold mb-6 text-center">Login or Register</h1>
     
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <div v-if="showUsernamePassword">
