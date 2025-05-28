@@ -11,12 +11,7 @@ const navigateToApp = () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="text-center mb-8">
-      <p class="text-lg text-gray-600">
-        La tua collezione di scuse creative
-      </p>
-    </div>
+  <div class="flex flex-col items-center justify-center">    
     <button 
       @click="navigateToApp" 
       class="btn-primary btn-circle"
@@ -26,6 +21,9 @@ const navigateToApp = () => {
   </div>
 </template>
 
-<style scoped>
-
+<style>
+  .page-root {
+    background: url(../assets/page_bg_light.svg);   
+    background-size: 10%; 
+  }
 </style>  

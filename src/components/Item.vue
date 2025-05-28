@@ -27,10 +27,10 @@ const formattedDate = computed(() => {
 <template>
    <div class="excuse flex flex-col items-center justify-center" v-if="item.image" >
         <div 
-            class="image mb-8 w-full h-full cursor-pointer rounded-full bg-white aspect-square" 
+            class="image mb-8 w-full h-full cursor-pointer rounded-full bg-white aspect-square border-24 border-white" 
             :style="{
                 backgroundImage: `url(${item.imageUrl})`,
-                backgroundSize: '84%',
+                backgroundSize: '80%',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: 'var(--secondary-color)'
