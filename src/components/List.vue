@@ -62,7 +62,7 @@ onMounted(() => {
     </swiper-container>
     
     <div class="flex space-x-4 justify-center">
-        <button class="btn-primary" @click="refresh">
+        <button class="btn-primary whitespace-nowrap" @click="refresh">
             Scusa Random
         </button> 
     </div>

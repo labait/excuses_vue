@@ -94,24 +94,24 @@ provide('data', data)
 <template> 
   <div class="min-h-screen flex flex-col" :class="bodyClasses">
     <!-- Header with auth menu -->
-    <header class="py-4 px-6">
+    <header class="py-4 px-6 mb-4">
       <div class="max-w-screen-sm mx-auto flex justify-center items-center">
-        <div class="flex items-center justify-center space-x-6">
+        <div class="flex items-center justify-center space-x-6 text-center">
           <RouterLink to="/">
-            <div class="text-6xl font-bold ">{{ config.appName }}</div>
-            <h1 class="text-1xl font-bold text-indigo-600 ps-2">L'App delle scuse</h1>
+            <div class="text-7xl font-extrabold">{{ config.appName }}</div>
+            <h1 class="text-2xl font-bold">L'App delle scuse</h1>
           </RouterLink>
         </div>
       </div>
     </header>
     
     <!-- Main content -->
-    <main class="flex-1 flex flex-col items-center justify-center w-full max-w-screen-sm mx-auto p-6 max-h-20  z-10">
+    <main class="flex-1 flex flex-col items-center  w-full max-w-screen-sm mx-auto z-10 px-6">
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
 
-    <footer class="flex justify-between items-center p-4 pb-8 w-full max-w-screen-sm mx-auto">
+    <footer class="flex fixed bottom-0 w-full justify-between items-center p-4 pb-8  mx-auto">
        <a href="https://synapses.laba.edu" target="_blank">
         <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
        </a>
