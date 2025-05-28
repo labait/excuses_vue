@@ -1,6 +1,7 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, watch } from 'vue'
 import Item from './Item.vue'
+import { useBookmarks } from '../bookmarks'
 
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -8,15 +9,27 @@ import { register } from 'swiper/element/bundle';
 register();
 
 const data = inject('data')
+const { fetchBookmarks } = useBookmarks()
+
+// Fetch bookmarks when the component is mounted
+fetchBookmarks()
+
+// Handle bookmark toggling event
+const handleBookmarkToggle = (event) => {
+  // Already handled by the BookmarkStar component
+  // This is just for potential future handling if needed
+  console.log(`Bookmark toggled for ${event.excuseId}. New state: ${event.isBookmarked}`)
+}
 </script>
 
 <template>
     <swiper-container class="list mb-8 w-full">
         <swiper-slide v-for="item in data" class="item">
             <Item 
-                class="w-full "
+                class="w-full"
                 :key="item.id" 
-                :item="item" 
+                :item="item"
+                @bookmark-toggled="handleBookmarkToggle"
             />
         </swiper-slide>
 
@@ -27,6 +40,11 @@ const data = inject('data')
         <RouterLink to="/">
             <button class="btn">
                 Go back
+            </button>
+        </RouterLink>
+        <RouterLink to="/bookmarks">
+            <button class="btn bg-yellow-500 text-white hover:bg-yellow-600">
+                My Bookmarks
             </button>
         </RouterLink>
         <RouterLink to="/add">

@@ -24,7 +24,7 @@ const navigateToApp = () => {
     </div>
     <button 
       @click="navigateToApp" 
-      class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-150"
+      class="btn-primary"
     >
       {{ user ? 'View Excuses' : 'Login' }}
     </button>

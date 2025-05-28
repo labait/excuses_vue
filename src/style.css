@@ -2,9 +2,24 @@
 
 /* Keep any custom styles below this line */
 
+:root {
+    --primary-color: #e67d3f;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+}rfr
 
 @layer components {
-    .btn {
-        @apply cursor-pointer text-center w-full hover:bg-blue-600 bg-blue-500 text-white p-2 rounded-md;
+    .btn-primary {
+        @apply 
+        cursor-pointer 
+        text-center 
+        w-full
+        hover:bg-blue-600 
+        bg-blue-500 
+        text-white 
+        p-2 
+        rounded-md;
     }
 }

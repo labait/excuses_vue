@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, computed } from 'vue'
+import BookmarkStar from './BookmarkStar.vue'
 
 const props = defineProps(
     {
@@ -25,8 +26,13 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-    <RouterLink :to="`/detail/${item.id}`">
-        <div class="item pb-4 mb-4 cursor-pointer hover:bg-gray-100 p-4 rounded-md flex flex-col items-center justify-center">
+    <div class="item pb-4 mb-4 cursor-pointer hover:bg-gray-100 p-4 rounded-md flex flex-col items-center justify-center relative">
+        <!-- Bookmark star (top right) -->
+        <div class="absolute top-4 right-4 z-10">
+            <BookmarkStar :excuseId="item.id" />
+        </div>
+        
+        <RouterLink :to="`/detail/${item.id}`" class="w-full flex flex-col items-center">
             <div v-if="item.image" class="image-container mb-4">
                 <img :src="item.image" alt="Excuse image" class="w-full max-h-40 object-contain rounded-md" />
             </div>
@@ -36,8 +42,8 @@ const formattedDate = computed(() => {
                 <div v-if="item.userEmail" class="user">By: {{ item.userEmail }}</div>
                 <div v-if="formattedDate" class="date">{{ formattedDate }}</div>
             </div>
-        </div>
-    </RouterLink>
+        </RouterLink>
+    </div>
 </template>
 
 <style scoped>
