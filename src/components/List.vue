@@ -25,6 +25,7 @@ onMounted(() => {
     // swiper parameters
     const swiperParams = {
         slidesPerView: 1,
+        loop: true,
         breakpoints: {
             640: {
                 slidesPerView: 1,
