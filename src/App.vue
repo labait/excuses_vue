@@ -10,7 +10,7 @@ const route = useRoute()
 
 import { storage, db } from './firebase'
 import { ref as storageRef,  getDownloadURL } from 'firebase/storage'
-import { collection, getDocs, query, orderBy } from 'firebase/firestore'
+import { collection, getDocs, query, orderBy, updateDoc } from 'firebase/firestore'
 
 import { provideAuth } from './auth'
 
@@ -45,19 +45,22 @@ const loadData = async () => {
     // Map the documents to our data array with proper timestamps
     data.value = await Promise.all(querySnapshot.docs.map(async (doc) => {
       const docData = doc.data()
-      // Convert Firestore Timestamp to JavaScript Date if it exists
 
-      const imageRef = storageRef(storage, docData.image.replace(" ", ""))
-      let imageUrl = await getDownloadURL(imageRef)
-      //imageUrl = await getDownloadURL(imageRef)
-      //imageUrl = "https://firebasestorage.googleapis.com/v0/b/execuses-laba.firebasestorage.app/o/excuses%2F01.png?alt=media&token=8ab1cec0-e80f-4f4c-8d6a-17770cbdff7d"
+      // update the imageUrl
+      if(!docData.imageUrl) {
+        const imageRef = storageRef(storage, docData.image.replace(" ", ""))
+        let imageUrl = await getDownloadURL(imageRef)
+        await updateDoc(doc.ref, {
+          imageUrl: imageUrl
+        })
+      }
 
       return {
         id: doc.id,
         ...docData,
         // Format the timestamp for display if needed
         createdAt: docData.createdAt ? docData.createdAt.toDate() : null,
-        imageUrl: imageUrl
+        imageUrl: docData.imageUrl
       }
     }))
     console.log(data.value)

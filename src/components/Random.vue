@@ -15,8 +15,14 @@ const randomIndex = ref(null)
 const item = ref(null)
 
 const getRandomExcuse = () => {
+    //config.value.loading = true
     randomIndex.value = Math.floor(Math.random() * data.value.length)
     item.value = data.value[randomIndex.value]
+    // const img = new Image()
+    // img.src = item.value.imageUrl
+    // img.onload = () => {
+    //     config.value.loading = false
+    // }
 }
 
 const refresh = () => {
