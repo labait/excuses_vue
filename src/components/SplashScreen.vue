@@ -15,7 +15,7 @@ const navigateToApp = () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-screen">
+  <div class="flex flex-col items-center justify-center">
     <div class="text-center mb-8">
       <h1 class="text-3xl font-bold text-indigo-600 mb-2">Excuses App</h1>
       <p class="text-lg text-gray-600">

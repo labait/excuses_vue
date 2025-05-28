@@ -6,6 +6,7 @@
     --primary-color: #F3AC7C;
     --secondary-color: #FFDBB6;
     --accent-color: #E67D3F;
+    --color-gray-300: var(--accent-color);
     --dark-color: #000000;
     --color-indigo-600: var(--dark-color);
     --light-color: #ffffff;
@@ -40,8 +41,8 @@ html {
     }
 
     .btn-circle {
-        width: calc(80vw + 2rem);
-        height: calc(80vw + 2rem);
+        width: calc(80vw);
+        height: calc(80vw);
         border-radius: 20rem;
         max-width: 20rem;
         max-height: 20rem;
@@ -52,7 +53,6 @@ html {
         transition: 0.3s;
         background-color: var( --accent-color);
         color: var(--light-color);
-        border: 1.5rem solid var(--light-color);
         max-width: 22rem;
         max-height: 22rem;
     }
