@@ -2,6 +2,13 @@
 
 /* Keep any custom styles below this line */
 
+:root {
+    --primary-color: #e67d3f;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+}rfr
 
 @layer components {
     .btn-primary {
