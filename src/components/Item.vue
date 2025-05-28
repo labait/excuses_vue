@@ -26,25 +26,20 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-    <div class="item pb-4 mb-4 cursor-pointer p-4 rounded-md flex flex-col items-center justify-center relative">
-        <!-- Bookmark star (top right) -->
-        <div class="absolute top-4 right-4 z-10">
-            <BookmarkStar :excuseId="item.id" />
+   <div class="excuse flex flex-col items-center justify-center" v-if="item.image" >
+        <div 
+            class="image mb-8 w-64 h-64 cursor-pointer rounded-full bg-white aspect-square" 
+            :style="{
+                backgroundImage: `url(${item.imageUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }"
+        >
         </div>
-        
-        <RouterLink :to="`/detail/${item.id}`" class="w-full flex flex-col items-center">
-            <div v-if="item.image" class="image-container mb-4">
-                {{ item.imageUrl }}
-                <img :src="item.imageUrl" alt="Excuse image" class="w-full max-h-40 object-contain rounded-md" />
-            </div>
-            <div class="title text-2xl font-bold text-center">{{ item.title }}</div>
-            <div class="description text-center">{{ item.description }}</div>
-            <div class="flex flex-col items-center mt-2 text-sm text-gray-500">
-                <div v-if="item.userEmail" class="user">By: {{ item.userEmail }}</div>
-                <div v-if="formattedDate" class="date">{{ formattedDate }}</div>
-            </div>
-        </RouterLink>
-    </div>
+        <div class="text mb-8 text-center max-w-md">
+            <div class="title text-2xl font-bold text-center">{{ item.text }}</div>
+        </div>
+   </div>
 </template>
 
 <style scoped>
