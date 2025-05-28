@@ -10,8 +10,8 @@
 
 <style scoped>
 .loading-spinner {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid var(--primary-color);
+    border-top: 16px solid var(--accent-color); 
     border-radius: 50%;
     width: 120px;
     height: 120px;

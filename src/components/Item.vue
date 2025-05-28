@@ -26,7 +26,7 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-    <div class="item pb-4 mb-4 cursor-pointer hover:bg-gray-100 p-4 rounded-md flex flex-col items-center justify-center relative">
+    <div class="item pb-4 mb-4 cursor-pointer p-4 rounded-md flex flex-col items-center justify-center relative">
         <!-- Bookmark star (top right) -->
         <div class="absolute top-4 right-4 z-10">
             <BookmarkStar :excuseId="item.id" />

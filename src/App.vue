@@ -19,6 +19,7 @@ const config = {
   appName: 'Opsy',
   features: {
     add: true,
+    bookmarks: false,
   }
 }
 provide('config', config)
@@ -100,6 +101,7 @@ provide('data', data)
           <!-- Navigation Links (only shown when logged in) -->
           <nav v-if="!loading" class="hidden sm:flex space-x-4">
             <RouterLink 
+              v-if="config.features.bookmarks"
               to="/bookmarks" 
               class="text-gray-600 hover: transition-colors"
               active-class=" font-medium"

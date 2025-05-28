@@ -39,11 +39,6 @@ const handleBookmarkToggle = (event) => {
     </swiper-container>
     <!-- navigation buttons -->
     <div class="flex space-x-4 justify-center">
-        <RouterLink to="/">
-            <button class="btn">
-                Go back
-            </button>
-        </RouterLink>
         <RouterLink v-if="config.features.add" to="/add">
             <button class="btn-primary">
                 Add New Excuse
