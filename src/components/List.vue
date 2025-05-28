@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
     <swiper-container 
-        class="list w-full"
+        class="list w-full "
         init="false"
     >
         <swiper-slide v-for="item in data" class="">
@@ -61,9 +61,9 @@ onMounted(() => {
         </swiper-slide>
     </swiper-container>
     
-    <div class="flex space-x-4 justify-center">
+    <div class="flex justify-center mb-4">
         <button class="btn-primary whitespace-nowrap" @click="refresh">
-            Scusa Random
+            Random
         </button> 
     </div>
 </template>

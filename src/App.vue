@@ -89,6 +89,8 @@ const bodyClasses = computed(() => {
 })
 
 provide('data', data)
+
+
 </script>
 
 <template> 
@@ -98,15 +100,15 @@ provide('data', data)
       <div class="max-w-screen-sm mx-auto flex justify-center items-center">
         <div class="flex items-center justify-center space-x-6 text-center">
           <RouterLink to="/">
-            <div class="text-7xl font-extrabold">{{ config.appName }}</div>
-            <h1 class="text-2xl font-bold">L'App delle scuse</h1>
+            <div class="text-4xl font-extrabold">{{ config.appName }}</div>
+            <div class="text-2xl">L'App delle scuse</div>
           </RouterLink>
         </div>
       </div>
     </header>
     
     <!-- Main content -->
-    <main class="flex-1 flex flex-col items-center  w-full max-w-screen-sm mx-auto z-10 px-6">
+    <main class="flex flex-col items-center w-full max-w-screen-sm mx-auto max-h-10 z-10 px-6">
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
