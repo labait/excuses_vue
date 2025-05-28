@@ -3,23 +3,58 @@
 /* Keep any custom styles below this line */
 
 :root {
-    --primary-color: #e67d3f;
-    --secondary-color: #6c757d;
+    --primary-color: #F3AC7C;
+    --secondary-color: #FFDBB6;
+    --accent-color: #E67D3F;
+    --color-gray-300: var(--accent-color);
+    --dark-color: #000000;
+    --color-indigo-600: var(--dark-color);
+    --light-color: #ffffff;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
-}rfr
+    --base-text-size: 16px;
+    --btn-text-size: 1.5rem;
+}
+
+html {
+    font-size: var(--base-text-size);
+    background: var(--secondary-color);
+    text-rendering: geometricPrecision;
+}
 
 @layer components {
     .btn-primary {
-        @apply 
-        cursor-pointer 
-        text-center 
-        w-full
-        hover:bg-blue-600 
-        bg-blue-500 
-        text-white 
-        p-2 
-        rounded-md;
+        font-size: var(--btn-text-size);
+        font-weight: 700;
+        padding: 1rem 2rem;
+        background-color: var( --primary-color);
+        color: var(--dark-color);
+        border-radius: 2.5rem;
+        transition: 0.3s;
+        cursor: pointer;
     }
+    .btn-primary:hover {
+        background-color: var( --accent-color);
+        color: var(--light-color);
+        padding: 1rem 3rem;
+    }
+
+    .btn-circle {
+        width: calc(80vw);
+        height: calc(80vw);
+        border-radius: 20rem;
+        max-width: 20rem;
+        max-height: 20rem;
+        border: 1.5rem solid var(--light-color);
+    }
+
+    .btn-circle:hover {
+        transition: 0.3s;
+        background-color: var( --accent-color);
+        color: var(--light-color);
+        max-width: 22rem;
+        max-height: 22rem;
+    }
+
 }
