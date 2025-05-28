@@ -82,7 +82,12 @@ onMounted(() => {
 })
 
 const bodyClasses = computed(() => {
-  return ['test']
+  const classes = []
+  classes.push('test')
+  let path = route.path;
+  if(path == "/") path = "root";
+  classes.push(`page-${path.replace('/', '-')}`)
+  return classes
 })
 
 provide('data', data)
@@ -163,5 +168,9 @@ provide('data', data)
 <style>
 main {
   min-height: 80vh;
+}
+
+#app {
+
 }
 </style>

@@ -32,6 +32,6 @@ const navigateToApp = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 
-</style>
+</style>  

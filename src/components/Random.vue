@@ -54,7 +54,5 @@ onMounted(() => {
 </style>
 
 <style>
-#app {
-    background-color: var(--light-color);
-}
+
 </style>
