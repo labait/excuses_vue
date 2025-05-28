@@ -9,6 +9,7 @@ import { register } from 'swiper/element/bundle';
 register();
 
 const data = inject('data')
+const config = inject('config')
 const { fetchBookmarks } = useBookmarks()
 
 // Fetch bookmarks when the component is mounted
@@ -23,6 +24,7 @@ const handleBookmarkToggle = (event) => {
 </script>
 
 <template>
+    
     <swiper-container class="list mb-8 w-full">
         <swiper-slide v-for="item in data" class="item">
             <Item 
@@ -42,15 +44,10 @@ const handleBookmarkToggle = (event) => {
                 Go back
             </button>
         </RouterLink>
-        <RouterLink to="/bookmarks">
-            <button class="btn bg-yellow-500 text-white hover:bg-yellow-600">
-                My Bookmarks
-            </button>
-        </RouterLink>
-        <RouterLink to="/add">
-            <button class="btn bg-blue-500 text-white hover:bg-blue-600">
+        <RouterLink v-if="config.features.add" to="/add">
+            <button class="btn-primary">
                 Add New Excuse
-            </button>
+            </button> 
         </RouterLink>
     </div>
 </template>

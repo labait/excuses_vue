@@ -34,7 +34,8 @@ const formattedDate = computed(() => {
         
         <RouterLink :to="`/detail/${item.id}`" class="w-full flex flex-col items-center">
             <div v-if="item.image" class="image-container mb-4">
-                <img :src="item.image" alt="Excuse image" class="w-full max-h-40 object-contain rounded-md" />
+                {{ item.imageUrl }}
+                <img :src="item.imageUrl" alt="Excuse image" class="w-full max-h-40 object-contain rounded-md" />
             </div>
             <div class="title text-2xl font-bold text-center">{{ item.title }}</div>
             <div class="description text-center">{{ item.description }}</div>

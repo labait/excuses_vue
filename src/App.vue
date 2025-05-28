@@ -4,17 +4,22 @@ import Loading from './components/loading.vue'
 import ProfileMenu from './components/ProfileMenu.vue'
 
 import { useRouter, RouterLink, useRoute } from 'vue-router'
-import { provide, ref, onMounted, watch } from 'vue'
+import { provide, ref, onMounted, watch, computed } from 'vue'
 const router = useRouter()
 const route = useRoute()
 
-import { collection, getDocs, query, orderBy } from "firebase/firestore"
-import { db } from './firebase'
+import { storage, db } from './firebase'
+import { ref as storageRef,  getDownloadURL } from 'firebase/storage'
+import { collection, getDocs, query, orderBy } from 'firebase/firestore'
+
 import { provideAuth } from './auth'
 import { provideBookmarks } from './bookmarks'
 
 const config = {
   appName: 'Opsy',
+  features: {
+    add: true,
+  }
 }
 provide('config', config)
 
@@ -38,16 +43,23 @@ const loadData = async () => {
     const querySnapshot = await getDocs(excusesQuery)
     
     // Map the documents to our data array with proper timestamps
-    data.value = querySnapshot.docs.map((doc) => {
+    data.value = await Promise.all(querySnapshot.docs.map(async (doc) => {
       const docData = doc.data()
       // Convert Firestore Timestamp to JavaScript Date if it exists
+
+      const imageRef = storageRef(storage, doc.image)
+      let imageUrl = doc.image //await getDownloadURL(imageRef)
+      imageUrl = "https://firebasestorage.googleapis.com/v0/b/execuses-laba.firebasestorage.app/o/excuses%2F01.png?alt=media&token=8ab1cec0-e80f-4f4c-8d6a-17770cbdff7d"
+
       return {
         id: doc.id,
         ...docData,
         // Format the timestamp for display if needed
-        createdAt: docData.createdAt ? docData.createdAt.toDate() : null
+        createdAt: docData.createdAt ? docData.createdAt.toDate() : null,
+        imageUrl: imageUrl
       }
-    })
+    }))
+    console.log(data.value)
   } catch (error) {
     console.error("Error loading excuses:", error)
   } finally {
@@ -68,11 +80,15 @@ onMounted(() => {
   loadData()
 })
 
+const bodyClasses = computed(() => {
+  return ['test']
+})
+
 provide('data', data)
 </script>
 
 <template> 
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col" :class="bodyClasses">
     <!-- Header with auth menu -->
     <header class="py-4 px-6">
       <div class="max-w-screen-sm mx-auto flex justify-between items-center">
@@ -83,13 +99,6 @@ provide('data', data)
           
           <!-- Navigation Links (only shown when logged in) -->
           <nav v-if="!loading" class="hidden sm:flex space-x-4">
-            <RouterLink 
-              to="/list" 
-              class="text-gray-600 hover: transition-colors"
-              active-class=" font-medium"
-            >
-              All Excuses
-            </RouterLink>
             <RouterLink 
               to="/bookmarks" 
               class="text-gray-600 hover: transition-colors"

@@ -12,6 +12,7 @@ console.log(`VITE_FIREBASE_API_KEY: ${import.meta.env.VITE_FIREBASE_API_KEY}`);
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "execuses-laba.firebaseapp.com",
+  databaseURL: "https://execuses-laba-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "execuses-laba",
   storageBucket: "execuses-laba.firebasestorage.app",
   messagingSenderId: "412819735994",
