@@ -6,6 +6,8 @@ import { useAuth } from '../auth'
 const router = useRouter()
 const { login, loginWithGoogle, error } = useAuth()
 
+const showUsernamePassword = ref(false)
+
 const email = ref('')
 const password = ref('')
 const isSubmitting = ref(false)
@@ -44,44 +46,48 @@ const handleGoogleLogin = async () => {
 </script>
 
 <template>
-  <div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
+  <div class="min-w-sm mx-auto p-6 bg-white rounded-lg shadow-md ">
+    <h1 class="text-2xl font-bold mb-6 text-center">Login / Register</h1>
     
     <form @submit.prevent="handleSubmit" class="space-y-4">
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input 
-          id="email" 
-          v-model="email" 
-          type="email" 
-          required
-          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
+      <div v-if="showUsernamePassword">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input 
+            id="email" 
+            v-model="email" 
+            type="email" 
+            required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input 
+            id="password" 
+            v-model="password" 
+            type="password" 
+            required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
       
-      <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input 
-          id="password" 
-          v-model="password" 
-          type="password" 
-          required
-          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
       
-      <div v-if="localError || error" class="text-red-500 text-sm">
-        {{ localError || error }}
-      </div>
+        <div v-if="localError || error" class="text-red-500 text-sm">
+          {{ localError || error }}
+        </div>
       
-      <div>
-        <button 
-          type="submit" 
-          :disabled="isSubmitting"
-          class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-        >
-          {{ isSubmitting ? 'Logging in...' : 'Login' }}
-        </button>
+        
+        <div>
+          <button 
+            type="submit" 
+            :disabled="isSubmitting"
+            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+          >
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+        </div>
       </div>
     </form>
     
@@ -90,7 +96,7 @@ const handleGoogleLogin = async () => {
         <div class="absolute inset-0 flex items-center">
           <div class="w-full border-t border-gray-300"></div>
         </div>
-        <div class="relative flex justify-center text-sm">
+        <div v-if="showUsernamePassword" class="relative flex justify-center text-sm">
           <span class="px-2 bg-white text-gray-500">Or continue with</span>
         </div>
       </div>
@@ -99,7 +105,7 @@ const handleGoogleLogin = async () => {
         <button 
           @click="handleGoogleLogin" 
           :disabled="isSubmitting"
-          class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+          class="cursor-pointer w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
         >
           <span class="flex items-center justify-center">
             <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
@@ -115,7 +121,7 @@ const handleGoogleLogin = async () => {
       </div>
     </div>
     
-    <div class="mt-6 text-center">
+    <div v-if="showUsernamePassword" class="mt-6 text-center">
       <p class="text-sm text-gray-600">
         Don't have an account? 
         <router-link to="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</router-link>

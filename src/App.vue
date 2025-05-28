@@ -71,7 +71,9 @@ provide('data', data)
     <header class="bg-white shadow-sm py-4 px-6">
       <div class="max-w-screen-sm mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-6">
-          <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+          <RouterLink to="/">
+            <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+          </RouterLink>
           
           <!-- Navigation Links (only shown when logged in) -->
           <nav v-if="!loading" class="hidden sm:flex space-x-4">
