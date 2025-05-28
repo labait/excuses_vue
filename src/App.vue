@@ -1,4 +1,5 @@
 <script setup>
+
 import Loading from './components/loading.vue'
 import ProfileMenu from './components/ProfileMenu.vue'
 
@@ -11,6 +12,11 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from './firebase'
 import { provideAuth } from './auth'
 import { provideBookmarks } from './bookmarks'
+
+const config = {
+  appName: 'Opsy',
+}
+provide('config', config)
 
 // Provide auth context
 provideAuth()
@@ -68,26 +74,26 @@ provide('data', data)
 <template> 
   <div class="min-h-screen flex flex-col">
     <!-- Header with auth menu -->
-    <header class="bg-white shadow-sm py-4 px-6">
+    <header class="py-4 px-6">
       <div class="max-w-screen-sm mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-6">
           <RouterLink to="/">
-            <div class="text-xl font-bold text-indigo-600">Excuses App</div>
+            <div class="text-xl font-bold ">{{ config.appName }}</div>
           </RouterLink>
           
           <!-- Navigation Links (only shown when logged in) -->
           <nav v-if="!loading" class="hidden sm:flex space-x-4">
             <RouterLink 
               to="/list" 
-              class="text-gray-600 hover:text-indigo-600 transition-colors"
-              active-class="text-indigo-600 font-medium"
+              class="text-gray-600 hover: transition-colors"
+              active-class=" font-medium"
             >
               All Excuses
             </RouterLink>
             <RouterLink 
               to="/bookmarks" 
-              class="text-gray-600 hover:text-indigo-600 transition-colors"
-              active-class="text-indigo-600 font-medium"
+              class="text-gray-600 hover: transition-colors"
+              active-class=" font-medium"
             >
               <span class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -99,7 +105,36 @@ provide('data', data)
           </nav>
         </div>
         
-        <ProfileMenu />
+        <div>
+              <!-- User Avatar with Name -->
+    <div class="relative">
+      <button 
+        @click="user ? toggleMenu : navigateToLogin"
+        class="flex items-center space-x-2 focus:outline-none"
+      >
+        <span v-if="user" class="text-sm hidden sm:inline">
+          {{ user.email ? user.email.split('@')[0] : 'User' }}
+        </span>
+        <div v-if="user" class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-medium">
+          {{ user.email ? user.email.charAt(0).toUpperCase() : 'U' }}
+        </div>
+        <div v-else class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </div>
+      </button>
+      
+      <div 
+        v-if="user && isMenuOpen" 
+        class="absolute right-0 mt-2 w-48 py-2 bg-white rounded-md shadow-lg z-50"
+      >
+        <div class="px-4 py-2 text-sm text-gray-700 border-b">
+          {{ user.email }}
+        </div>
+      </div>
+    </div>
+        </div>
       </div>
     </header>
     
