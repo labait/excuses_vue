@@ -102,51 +102,22 @@ provide('data', data)
             <h1 class="text-1xl font-bold text-indigo-600 ps-2">L'App delle scuse</h1>
           </RouterLink>
         </div>
-        <div>
-    
-    <!-- User Avatar with Name -->
-    <div v-if="user" class="relative">
-      <button 
-        @click="() => {
-          router.push('/profile')
-        }"
-        class="flex items-center space-x-2 focus:outline-none"
-      >
-        <span v-if="user" class="text-sm hidden sm:inline">
-          {{ user.email ? user.email.split('@')[0] : 'User' }}
-        </span>
-        <div v-if="user" class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-medium">
-          {{ user.email ? user.email.charAt(0).toUpperCase() : 'U' }}
-        </div>
-        <div v-else class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
-        </div>
-      </button>
-      
-      <div 
-        v-if="user && isMenuOpen" 
-        class="absolute right-0 mt-2 w-48 py-2 bg-white rounded-md shadow-lg z-50"
-      >
-        <div class="px-4 py-2 text-sm text-gray-700 border-b">
-          {{ user.email }}
-        </div>
-      </div>
-    </div>
-        </div>
       </div>
     </header>
     
     <!-- Main content -->
-    <main class="flex-1 flex flex-col items-center justify-center w-full max-w-screen-sm mx-auto p-6 max-h-20 pt-20">
+    <main class="flex-1 flex flex-col items-center justify-center w-full max-w-screen-sm mx-auto p-6 max-h-20  z-10">
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
 
     <footer class="flex justify-between items-center p-4 pb-8 w-full max-w-screen-sm mx-auto">
-       <img class="brand-logo" src="./assets/logo_laba_light.svg" alt="synapse">
-       <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
+       <a href="https://synapses.laba.edu" target="_blank">
+        <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
+       </a>
+       <a href="https://laba.edu" target="_blank">
+        <img class="brand-logo" src="./assets/logo_laba_light.svg" alt="synapse">
+       </a>
     </footer>
   </div>
 </template>
