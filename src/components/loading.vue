@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="loading w-full h-full flex items-center justify-center">
+    <div class="loading w-screen h-screen flex items-center justify-center">
         <div class="loading-spinner"></div>
     </div>
 </template>

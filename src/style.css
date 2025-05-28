@@ -17,6 +17,16 @@
     --btn-text-size: 1.5rem;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+}
+html, body {
+    overflow: hidden;
+    touch-action: none;
+}
+
 html {
     font-size: var(--base-text-size);
     background: var(--secondary-color);
