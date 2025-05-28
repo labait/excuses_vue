@@ -17,12 +17,7 @@ const navigateToApp = () => {
 
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="text-center mb-8">
-      <h1 class="text-3xl font-bold text-indigo-600 mb-2">Excuses App</h1>
-      <p class="text-lg text-gray-600">
-        Your collection of creative excuses
-      </p>
-    </div>
+    
     <button 
       @click="navigateToApp" 
       class="btn-primary btn-circle"
@@ -32,6 +27,9 @@ const navigateToApp = () => {
   </div>
 </template>
 
-<style scoped>
-
+<style>
+  .page-root {
+    background: url(../assets/page_bg_light.svg);   
+    background-size: 10%; 
+  }
 </style>  

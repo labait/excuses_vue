@@ -54,11 +54,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.list {
-    @apply mx-auto;
-}
+    .list {
+        @apply mx-auto;
+    }
 </style>
 
 <style>
-
+    .page--random {
+        background: var(--primary-color);
+    }
 </style>

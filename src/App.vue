@@ -100,10 +100,11 @@ provide('data', data)
   <div class="min-h-screen flex flex-col" :class="bodyClasses">
     <!-- Header with auth menu -->
     <header class="py-4 px-6">
-      <div class="max-w-screen-sm mx-auto flex justify-between items-center">
-        <div class="flex items-center space-x-6">
+      <div class="max-w-screen-sm mx-auto flex justify-center items-center">
+        <div class="flex items-center justify-center space-x-6">
           <RouterLink to="/">
             <div class="text-6xl font-bold ">{{ config.appName }}</div>
+            <h1 class="text-1xl font-bold text-indigo-600 ps-2">L'App delle scuse</h1>
           </RouterLink>
           
           <!-- Navigation Links (only shown when logged in) -->
@@ -165,6 +166,11 @@ provide('data', data)
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
+
+    <footer class="flex justify-between items-center p-4 pb-8 w-full max-w-screen-sm mx-auto">
+       <img class="brand-logo" src="./assets/logo_laba_light.svg" alt="synapse">
+       <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
+    </footer>
   </div>
 </template>
 
@@ -173,7 +179,11 @@ main {
   min-height: 80vh;
 }
 
+.brand-logo {
+  max-height: 2.5rem;
+  width: auto;
+}
 #app {
-
+  
 }
 </style>
