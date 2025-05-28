@@ -61,9 +61,9 @@ onMounted(() => {
         </swiper-slide>
     </swiper-container>
     
-    <div class="flex justify-center mb-4">
-        <button class="btn-primary whitespace-nowrap" @click="refresh">
-            Random
+    <div class="flex justify-center mb-4 fixed bottom-0 z-100 hover:text-black">
+        <button class="refresh" @click="refresh">
+            <div class="text-8xl">⟳</div>
         </button> 
     </div>
 </template>
@@ -71,5 +71,10 @@ onMounted(() => {
 <style scoped>
 .list {
     @apply mx-auto;
+}
+.refresh {
+   cursor: pointer;
+   font-weight: bold;
+   color: var(--accent-color);
 }
 </style>
