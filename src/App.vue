@@ -13,7 +13,6 @@ import { ref as storageRef,  getDownloadURL } from 'firebase/storage'
 import { collection, getDocs, query, orderBy } from 'firebase/firestore'
 
 import { provideAuth } from './auth'
-import { provideBookmarks } from './bookmarks'
 
 const config = ref({
   loading: false,
@@ -29,7 +28,7 @@ provide('config', config)
 provideAuth()
 
 // Provide bookmarks context
-provideBookmarks()
+//provideBookmarks()
 
 // Create a query to sort by createdAt in descending order
 const excusesQuery = query(
@@ -48,9 +47,10 @@ const loadData = async () => {
       const docData = doc.data()
       // Convert Firestore Timestamp to JavaScript Date if it exists
 
-      const imageRef = storageRef(storage, doc.image)
-      let imageUrl = doc.image //await getDownloadURL(imageRef)
-      imageUrl = "https://firebasestorage.googleapis.com/v0/b/execuses-laba.firebasestorage.app/o/excuses%2F01.png?alt=media&token=8ab1cec0-e80f-4f4c-8d6a-17770cbdff7d"
+      const imageRef = storageRef(storage, docData.image.replace(" ", ""))
+      let imageUrl = await getDownloadURL(imageRef)
+      //imageUrl = await getDownloadURL(imageRef)
+      //imageUrl = "https://firebasestorage.googleapis.com/v0/b/execuses-laba.firebasestorage.app/o/excuses%2F01.png?alt=media&token=8ab1cec0-e80f-4f4c-8d6a-17770cbdff7d"
 
       return {
         id: doc.id,
@@ -124,7 +124,7 @@ provide('data', data)
         <div>
     
     <!-- User Avatar with Name -->
-    <div class="relative">
+    <div v-if="user" class="relative">
       <button 
         @click="() => {
           router.push('/profile')
