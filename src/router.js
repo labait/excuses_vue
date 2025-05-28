@@ -4,7 +4,6 @@ import List from './components/List.vue'
 import Form from './components/Form.vue'
 import Login from './components/Login.vue'
 import Profile from './components/Profile.vue'
-import Random from './components/Random.vue'
 import { auth } from './firebase'
 
 const router = createRouter({
@@ -31,13 +30,6 @@ const router = createRouter({
     {
       path: '/list',
       component: List,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/random',
-      component: Random,
       meta: {
         requiresAuth: false
       }

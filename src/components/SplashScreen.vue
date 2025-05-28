@@ -6,12 +6,7 @@ const router = useRouter()
 const { user } = useAuth()
 
 const navigateToApp = () => {
-  router.push('/random')
-  // if (user.value) {
-  //   router.push('/list')
-  // } else {
-  //   router.push('/login')
-  // }
+  router.push('/list')
 }
 </script>
 
