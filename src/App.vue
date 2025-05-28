@@ -1,7 +1,6 @@
 <script setup>
 
 import Loading from './components/loading.vue'
-import ProfileMenu from './components/ProfileMenu.vue'
 
 import { useRouter, RouterLink, useRoute } from 'vue-router'
 import { provide, ref, onMounted, watch, computed } from 'vue'
@@ -18,17 +17,13 @@ const config = ref({
   loading: false,
   appName: 'Opsy',
   features: {
-    add: true,
-    bookmarks: false,
+    add: false,
   }
 })
 provide('config', config)
 
 // Provide auth context
 provideAuth()
-
-// Provide bookmarks context
-//provideBookmarks()
 
 // Create a query to sort by createdAt in descending order
 const excusesQuery = query(
@@ -100,28 +95,12 @@ provide('data', data)
   <div class="min-h-screen flex flex-col" :class="bodyClasses">
     <!-- Header with auth menu -->
     <header class="py-4 px-6">
-      <div class="max-w-screen-sm mx-auto flex justify-between items-center">
+      <div class="max-w-screen-sm mx-auto flex justify-center items-center">
         <div class="flex items-center space-x-6">
           <RouterLink to="/">
             <div class="text-6xl font-bold ">{{ config.appName }}</div>
           </RouterLink>
-          
-          <!-- Navigation Links (only shown when logged in) -->
-          <nav v-if="!config.loading" class="hidden sm:flex space-x-4">
-            <RouterLink 
-              v-if="config.features.bookmarks"
-              to="/bookmarks" 
-              class="text-gray-600 hover: transition-colors"
-              active-class=" font-medium"
-            >
-              <span class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
-                </svg>
-                Bookmarks
-              </span>
-            </RouterLink>
-          </nav>
+
         </div>
         
         <div>

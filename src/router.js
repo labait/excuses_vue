@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SplashScreen from './components/SplashScreen.vue'
 import List from './components/List.vue'
-import Detail from './components/Detail.vue'
 import Form from './components/Form.vue'
 import Login from './components/Login.vue'
-import Register from './components/Register.vue'
-import BookmarkedList from './components/BookmarkedList.vue'
 import Profile from './components/Profile.vue'
 import Random from './components/Random.vue'
 import { auth } from './firebase'
@@ -20,13 +17,6 @@ const router = createRouter({
     {
       path: '/login',
       component: Login,
-      meta: {
-        requiresGuest: true
-      }
-    },
-    {
-      path: '/register',
-      component: Register,
       meta: {
         requiresGuest: true
       }
@@ -50,20 +40,6 @@ const router = createRouter({
       component: Random,
       meta: {
         requiresAuth: false
-      }
-    },
-    {
-      path: '/bookmarks',
-      component: BookmarkedList,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/detail/:id',
-      component: Detail,
-      meta: {
-        requiresAuth: true
       }
     },
     {

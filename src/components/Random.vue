@@ -1,7 +1,6 @@
 <script setup>
 import { ref, inject, watch, onMounted } from 'vue'
 import Item from './Item.vue'
-import { useBookmarks } from '../bookmarks'
 
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -43,7 +42,6 @@ onMounted(() => {
             class="w-full"
             :key="item.id" 
             :item="item"
-            @bookmark-toggled="handleBookmarkToggle"
         />
     </a>
     <div class="flex space-x-4 justify-center">
