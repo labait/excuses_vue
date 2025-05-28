@@ -25,9 +25,9 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-   <div class="excuse flex flex-col items-center justify-center" v-if="item.image" >
+   <div class="item flex flex-col items-center justify-center" v-if="item.image" >
         <div 
-            class="image mb-8 w-full h-full cursor-pointer rounded-full bg-white aspect-square border-24 border-white" 
+            class="image w-full h-full cursor-pointer rounded-full bg-white aspect-square border-24 border-white mb-8" 
             :style="{
                 backgroundImage: `url(${item.imageUrl})`,
                 backgroundSize: '80%',
@@ -45,6 +45,6 @@ const formattedDate = computed(() => {
 
 <style scoped>
 .item {
-    @apply min-h-[400px] ;
+    /* border: 1px solid green; */
 }
 </style>

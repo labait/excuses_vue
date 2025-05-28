@@ -139,7 +139,7 @@ provide('data', data)
     </header>
     
     <!-- Main content -->
-    <main class="flex-1 flex flex-col items-center justify-center max-w-screen-sm mx-auto p-6">
+    <main class="flex-1 flex flex-col items-center justify-center w-full max-w-screen-sm mx-auto p-6 max-h-20 pt-20">
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>

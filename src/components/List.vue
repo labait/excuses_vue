@@ -51,9 +51,9 @@ onMounted(() => {
         class="list w-full"
         init="false"
     >
-        <swiper-slide v-for="item in data" class="border-2 border-red-500">
+        <swiper-slide v-for="item in data" class="">
             <Item 
-                class="w-full mx-auto"
+                class=""
                 :key="item.id" 
                 :item="item"
             />
