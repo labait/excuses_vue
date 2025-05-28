@@ -1,6 +1,5 @@
 <script setup>
-import { defineProps, computed } from 'vue'
-import BookmarkStar from './BookmarkStar.vue'
+import { defineProps, computed } from 'vue';
 
 const props = defineProps(
     {
@@ -28,11 +27,13 @@ const formattedDate = computed(() => {
 <template>
    <div class="excuse flex flex-col items-center justify-center" v-if="item.image" >
         <div 
-            class="image mb-8 w-64 h-64 cursor-pointer rounded-full bg-white aspect-square" 
+            class="image mb-8 w-120 h-120 cursor-pointer rounded-full bg-white aspect-square" 
             :style="{
                 backgroundImage: `url(${item.imageUrl})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
+                backgroundSize: '84%',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: 'var(--secondary-color)'
             }"
         >
         </div>

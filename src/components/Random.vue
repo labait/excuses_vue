@@ -30,14 +30,16 @@ onMounted(() => {
 </script>
 
 <template>
-    {{ randomIndex }}
-    <Item 
-        v-if="item"
-        class="w-full"
-        :key="item.id" 
-        :item="item"
-        @bookmark-toggled="handleBookmarkToggle"
-    />
+    <!-- {{ randomIndex }} -->
+    <a v-if="item" @click="refresh">
+        <Item 
+            
+            class="w-full"
+            :key="item.id" 
+            :item="item"
+            @bookmark-toggled="handleBookmarkToggle"
+        />
+    </a>
     <div class="flex space-x-4 justify-center">
         <button class="btn-primary" @click="refresh">
             Get Random Excuse
@@ -48,5 +50,11 @@ onMounted(() => {
 <style scoped>
 .list {
     @apply mx-auto;
+}
+</style>
+
+<style>
+#app {
+    background-color: var(--light-color);
 }
 </style>
