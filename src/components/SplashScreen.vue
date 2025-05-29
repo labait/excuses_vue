@@ -11,7 +11,7 @@ const navigateToApp = () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center mt-20">    
+  <div class="flex h-80 lg:h-100 items-center justify-center">    
     <button 
       @click="navigateToApp" 
       class="btn-primary btn-circle"
