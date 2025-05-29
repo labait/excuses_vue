@@ -50,8 +50,8 @@ const formattedDate = computed(() => {
 .image {
     height: calc(75vw);
     width: calc(75vw);
-    max-width: 90vw;
-    max-height: 90vw;
+    max-width: 86vw;
+    max-height: 86vw;
     aspect-ratio:1/1;
 }
 @media (min-aspect-ratio: 2/4) {
