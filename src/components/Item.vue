@@ -27,7 +27,7 @@ const formattedDate = computed(() => {
 <template>
    <div class="item flex flex-col items-center justify-center" v-if="item.image" >
         <div 
-            class="image w-full h-full max-h-100 max-w-100 cursor-pointer rounded-full bg-white aspect-square border-24 border-white mb-8" 
+            class="image w-full h-full max-h-100 max-w-100 cursor-pointer rounded-full bg-white aspect-square mb-4 lg:mb-8" 
             :style="{
                 backgroundImage: `url(${item.imageUrl})`,
                 backgroundSize: '80%',
@@ -38,7 +38,7 @@ const formattedDate = computed(() => {
         >
         </div>
         <div class="text text-center max-w-md">
-            <div class="title text-2xl font-bold text-center">{{ item.text }}</div>
+            <div class="title text-xl lg:text-2xl font-bold text-center">{{ item.text }}</div>
         </div>
    </div>
 </template>

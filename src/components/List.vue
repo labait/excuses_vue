@@ -78,3 +78,8 @@ onMounted(() => {
    color: var(--accent-color);
 }
 </style>
+<style>
+    .page--list {
+    background: var(--light-color);
+}
+</style>

@@ -115,10 +115,10 @@ provide('data', data)
 
     <footer class="flex fixed bottom-0 w-full justify-between items-center p-4 pb-8  mx-auto">
        <a href="https://synapses.laba.edu" target="_blank">
-        <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
+        <img class="brand-logo brand-synapses" src="./assets/logo_synapses.png" alt="">
        </a>
        <a href="https://laba.edu" target="_blank">
-        <img class="brand-logo" src="./assets/logo_laba_light.svg" alt="synapse">
+        <img class="brand-logo" src="./assets/logo_laba.svg" alt="synapse">
        </a>
     </footer>
   </div>
@@ -130,8 +130,12 @@ main {
 }
 
 .brand-logo {
-  max-height: 2.5rem;
+  max-height: 1.4rem;
   width: auto;
+}
+
+.brand-synapses {
+  max-height: 1.8rem;
 }
 #app {
   
