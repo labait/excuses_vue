@@ -101,24 +101,24 @@ provide('data', data)
         <div class="flex items-center justify-center space-x-6 text-center">
           <RouterLink to="/">
             <div class="text-4xl font-extrabold">{{ config.appName }}</div>
-            <div class="text-2xl">L'App delle scuse</div>
+            <div class="text-xl md:text-2xl">L'App delle scuse</div>
           </RouterLink>
         </div>
       </div>
     </header>
     
     <!-- Main content -->
-    <main class="flex flex-col   items-center w-full max-w-screen-sm mx-auto max-h-10 z-10 px-6">
+    <main class="flex flex-col items-center w-full max-w-screen-sm mx-auto max-h-10 z-10 px-6">
       <Loading v-if="config.loading" />    
       <RouterView v-else/>
     </main>
 
-    <footer class="flex fixed bottom-0 w-full justify-between items-center p-4 pb-8  mx-auto">
+    <footer class="flex fixed bottom-0 w-full justify-between items-end p-4 lg:p-8 pb-8 mx-auto">
        <a href="https://synapses.laba.edu" target="_blank">
-        <img class="brand-logo" src="./assets/logo_synapses_light.svg" alt="">
+        <img class="brand-logo brand-synapses" src="./assets/logo_synapses.png" alt="">
        </a>
        <a href="https://laba.edu" target="_blank">
-        <img class="brand-logo" src="./assets/logo_laba_light.svg" alt="synapse">
+        <img class="brand-logo" src="./assets/logo_laba.svg" alt="synapse">
        </a>
     </footer>
   </div>
@@ -130,8 +130,20 @@ main {
 }
 
 .brand-logo {
-  max-height: 2.5rem;
+  max-height: 1.4rem;
   width: auto;
+}
+
+.brand-synapses {
+  max-height: 1.8rem;
+}
+@media screen and (min-width: 750px) {
+  .brand-logo {
+    max-height: 2rem;
+  }
+  .brand-synapses {
+    max-height: 3rem;
+  }
 }
 #app {
   
